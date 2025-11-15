@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+:root{
+  --bg-1: linear-gradient(180deg,#0f1724 0%, #061026 100%);
+  --muted: #9fb0c8;
+  --accent: #6b5bff;
+  --surface: rgba(255,255,255,0.02);
+}
+
+*{box-sizing:border-box}
+html, body, #root { height: 100%; }
+body{
+  margin:0;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background: var(--bg-1);
+  color:#e7f0fb;
+  -webkit-font-smoothing:antialiased;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.app-container{
+  max-width:1100px;
+  margin: 24px auto;
+  padding:28px;
+  border-radius:18px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.008));
+  box-shadow: 0 10px 40px rgba(2,6,23,0.6);
+  width: calc(100% - 40px);
+  max-height: calc(100vh - 48px);
+  overflow: auto;
+}
+
+.app-header{ display:flex; align-items:center; gap:16px; }
+.app-header h1{ margin:0; font-size:1.6rem; }
+.subtitle{ margin:0; color:var(--muted); font-size:0.95rem }
+
+.input-textarea{
+  width:100%;
+  padding:14px 16px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,0.04);
+  background: rgba(10,14,20,0.35);
+  color:#eaf3ff;
+  resize:vertical;
+  min-height:120px;
+  font-size:0.98rem;
+}
+
+.layout{
+  display:grid;
+  grid-template-columns: 1fr 420px;
+  gap:22px;
+  margin-top:16px;
+}
+
+.left-panel{ padding:12px }
+.right-panel{ padding:12px }
+
+.label{ color:var(--muted); font-weight:700; display:block; margin-bottom:8px }
+
+.platforms{ display:flex; gap:10px; flex-wrap:wrap; margin-top:14px }
+.platform-label{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:transparent; color:var(--muted); cursor:pointer; border:1px solid rgba(255,255,255,0.03); transition:all .14s ease }
+.platform-label input{ width:16px; height:16px }
+.platform-label span{ font-weight:600 }
+.platform-label:hover{ transform:translateY(-3px) }
+
+/* checked styles per platform */
+.platform-label input:checked + span{ color:#fff }
+.platform-label input[value="linkedin"]:checked + span{ color:#0a66c2 }
+.platform-label input[value="twitter"]:checked + span{ color:#1da1f2 }
+.platform-label input[value="instagram"]:checked + span{ color:#c32aa3 }
+.platform-label input[value="facebook"]:checked + span{ color:#1877f2 }
+
+.action-row{ margin-top:18px; display:flex; gap:10px; align-items:center }
+.generate-btn{ background:linear-gradient(90deg,var(--accent), #4cc0ff); color:#fff; border:none; padding:10px 16px; border-radius:12px; font-weight:700; box-shadow:0 8px 30px rgba(107,91,255,0.16); cursor:pointer }
+.generate-btn:disabled{ opacity:0.45; cursor:not-allowed }
+
+.fill-sample{ background:transparent; border:1px dashed rgba(255,255,255,0.06); color:var(--muted); padding:8px 10px; border-radius:10px; cursor:pointer }
+.fill-sample:hover{ transform:translateY(-3px); color:#fff }
+
+.results{ display:flex; flex-direction:column; gap:14px; margin-top:6px }
+.platform-card{ border-radius:12px; padding:16px; background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02)); border:1px solid rgba(255,255,255,0.03); box-shadow: 0 6px 18px rgba(2,6,23,0.45); color: #e6eef6; display:flex; flex-direction:column; gap:12px }
+.card-title{ margin:0; font-size:1rem; color:#0b1220 }
+.card-body p{ margin:8px 0 0 0; color:var(--muted); line-height:1.55; white-space:pre-wrap }
+.card-actions{ display:flex; justify-content:flex-end }
+.copy-btn{ border-radius:10px; padding:8px 12px; border:1px solid rgba(255,255,255,0.04); background:transparent; color:var(--muted); cursor:pointer }
+.copy-btn:hover{ transform:translateY(-3px); }
+
+/* platform color accents (left border) */
+.platform-card[data-platform^="LinkedIn"]{ border-left:6px solid #0a66c2 }
+.platform-card[data-platform^="Twitter"]{ border-left:6px solid #1da1f2 }
+.platform-card[data-platform^="Instagram"]{ border-left:6px solid #c32aa3 }
+.platform-card[data-platform^="Facebook"]{ border-left:6px solid #1877f2 }
+
+/* right preview column styling */
+.right-panel{ background: rgba(255,255,255,0.01); border-radius:12px; padding:16px }
+.right-panel h2{ margin:0 0 8px 0 }
+
+@media (max-width: 920px){
+  .layout{ grid-template-columns: 1fr; }
+  .right-panel{ order:2 }
+}
+
+/* --- Additional polish: animations, emojis, hover/focus --- */
+.platform-card{ transform: translateY(6px); opacity: 0; animation: cardIn 420ms ease forwards }
+@keyframes cardIn { from { transform: translateY(12px); opacity: 0 } to { transform: translateY(0); opacity: 1 } }
+
+.generate-btn{ transition: transform .18s ease, box-shadow .18s ease }
+.generate-btn:hover:not(:disabled){ transform: translateY(-3px) scale(1.02); box-shadow: 0 14px 40px rgba(107,91,255,0.22) }
+
+.copy-btn{ transition: transform .12s ease, background .12s ease }
+.copy-btn:hover{ transform: translateY(-3px); background: rgba(255,255,255,0.02) }
+
+.input-textarea:focus{ outline: none; box-shadow: 0 6px 30px rgba(99,102,241,0.12); border-color: rgba(107,91,255,0.2) }
+
+/* platform emojis in labels and card titles */
+.platform-label span::before{ display:inline-block; margin-right:8px; font-size:14px }
+.platform-label input[value="linkedin"] + span::before{ content: "💼" }
+.platform-label input[value="twitter"] + span::before{ content: "🐦" }
+.platform-label input[value="instagram"] + span::before{ content: "📸" }
+.platform-label input[value="facebook"] + span::before{ content: "📘" }
+
+.card-title::before{ display:inline-block; margin-right:10px; font-size:16px }
+.platform-card[data-platform^="LinkedIn"] .card-title::before{ content: "💼" }
+.platform-card[data-platform^="Twitter"] .card-title::before{ content: "🐦" }
+.platform-card[data-platform^="Instagram"] .card-title::before{ content: "📸" }
+.platform-card[data-platform^="Facebook"] .card-title::before{ content: "📘" }
+
+/* subtle divider and spacing improvements */
+.left-panel .label{ color:var(--muted); font-weight:700; display:block; margin-bottom:8px }
+.platforms{ margin-top:12px }
+.platform-label{ padding:9px 14px }
+
+/* focus visible for accessibility */
+.platform-label input:focus-visible + span,
+.generate-btn:focus-visible,
+.copy-btn:focus-visible { outline: 3px solid rgba(107,91,255,0.12); border-radius:10px }
+
+@media (prefers-color-scheme: light){
+  :root{ --muted:#47566a; --accent:#6a5bff }
+  body{ color:#12202b; background: linear-gradient(180deg,#f6f8fb,#eef3fb) }
+  .input-textarea{ background:#fff; color:#0b1220 }
+  .platform-card{ background:#fff; color:#0b1220 }
+}
