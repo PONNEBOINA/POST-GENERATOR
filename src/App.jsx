@@ -44,7 +44,7 @@ async function contactAI() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "X-goog-api-key": "AIzaSyBCaktLqFRrMIK6kLtP2HvHQ8gjMtUUYVY"
+          "X-goog-api-key": import.meta.env.VITE_GEMINI_API_KEY
         },
         body: JSON.stringify({
           contents: [

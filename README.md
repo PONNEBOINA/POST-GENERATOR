@@ -1,18 +1,61 @@
-# React + Vite
+# AI Social Post Generator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Generate platform-specific social media posts using Gemini AI. Create unique, optimized content for LinkedIn, Twitter, Instagram, and Facebook with a single click.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🤖 AI-powered content generation using Google Gemini 2.0
+- 📱 Platform-specific formatting (LinkedIn, Twitter, Instagram, Facebook)
+- 📋 One-click copy to clipboard
+- 🎨 Clean, modern UI with platform-themed cards
+- ⚡ Built with React + Vite for fast performance
 
-## React Compiler
+## Setup
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+1. Install dependencies:
+```bash
+npm install
+```
 
-Note: This will impact Vite dev & build performances.
+2. Create a `.env` file in the root directory:
+```bash
+VITE_GEMINI_API_KEY=your_gemini_api_key_here
+```
 
-## Expanding the ESLint configuration
+Get your API key from: https://aistudio.google.com/app/apikey
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+3. Run the development server:
+```bash
+npm run dev
+```
+
+## Deployment
+
+### Build for production:
+```bash
+npm run build
+```
+
+### Preview production build:
+```bash
+npm run preview
+```
+
+### Deploy to Vercel (Recommended):
+```bash
+npm install -g vercel
+vercel
+```
+
+**Important**: When deploying, add your `VITE_GEMINI_API_KEY` as an environment variable in your hosting platform's dashboard.
+
+## Tech Stack
+
+- React 19
+- Vite 7
+- Google Gemini AI API
+- CSS3 with custom properties
+
+## License
+
+MIT
